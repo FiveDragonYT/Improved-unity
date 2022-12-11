@@ -11,7 +11,7 @@ public class Math
 
         for (int i = 0; i < args.Length; i++)
         {
-            if(result < args[i])
+            if (result < args[i])
             {
                 result = args[i];
             }
@@ -40,6 +40,20 @@ public class Math
         for (int i = 0; i < args.Length; i++)
         {
             if (result.Length < args[i].Length)
+            {
+                result = args[i];
+            }
+        }
+
+        return result;
+    }
+    public static float GetMax(params float[] args)
+    {
+        float result = args[0];
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (result < args[i])
             {
                 result = args[i];
             }
@@ -91,35 +105,58 @@ public class Math
 
         return result;
     }
-    #endregion
-    #region GetAverage
-    public static int GetAverage(params int[] args)
-    {
-        int result = args[0];
-
-        for (int i = 0; i < args.Length; i++)
-        {
-            if (result < args[i])
-            {
-                result = args[i];
-                result = result / (i + 1);
-            }
-        }
-        result = Mathf.RoundToInt(result);
-        return result;
-    }
-    public static float GetAverage(params float[] args)
+    public static float GetMin(params float[] args)
     {
         float result = args[0];
 
         for (int i = 0; i < args.Length; i++)
         {
-            if (result < args[i])
+            if (result > args[i])
             {
                 result = args[i];
-                result = result / (i + 1);
             }
         }
+
+        return result;
+    }
+    #endregion
+    #region GetAverage
+    public static int GetAverage(params int[] args)
+    {
+        int result = 0;
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            result += args[i];
+
+        }
+        result = result / args.Length;
+        result = Mathf.RoundToInt(result);
+        return result;
+    }
+    public static float GetAverage(params float[] args)
+    {
+        float result = 0;
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            result += args[i];
+
+        }
+        result = result / args.Length;
+        return result;
+    }
+    public static byte GetAverage(params byte[] args)
+    {
+        byte result = 0;
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            result += args[i];
+
+        }
+        result = (byte)(result / args.Length);
+        result = (byte)(Mathf.RoundToInt(result));
         return result;
     }
     #endregion
@@ -127,7 +164,7 @@ public class Math
     public static Vector3 Lerp3(Vector3 a, Vector3 b, Vector3 c, float t)
     {
         Vector3 result;
-        if(t < 0)
+        if (t < 0)
         {
             result = Vector3.LerpUnclamped(a, b, t + 1f);
         }
@@ -209,8 +246,8 @@ public class Math
         return result;
     }
     #endregion
-    #region ConvertToBit
-    public static byte[] ConvertVector2ToBit(object obj)
+    #region ConvertToByte
+    public static byte[] ConvertVector2ToByte(object obj)
     {
         Vector2 vector = (Vector2)obj;
         byte[] result = new byte[8];
@@ -218,7 +255,7 @@ public class Math
         BitConverter.GetBytes(vector.y).CopyTo(result, 4);
         return result;
     }
-    public static byte[] ConvertVector2IntToBit(object obj)
+    public static byte[] ConvertVector2IntToByte(object obj)
     {
         Vector2Int vector = (Vector2Int)obj;
         byte[] result = new byte[8];
@@ -226,17 +263,33 @@ public class Math
         BitConverter.GetBytes(vector.y).CopyTo(result, 4);
         return result;
     }
-    public static byte[] ConvertVector3ToBit(object obj)
+    public static byte[] ConvertVector3ToByte(object obj)
     {
         Vector3 vector = (Vector3)obj;
         byte[] result = new byte[12];
         BitConverter.GetBytes(vector.x).CopyTo(result, 0);
         BitConverter.GetBytes(vector.y).CopyTo(result, 4);
-        BitConverter.GetBytes(vector.y).CopyTo(result, 8);
+        BitConverter.GetBytes(vector.z).CopyTo(result, 8);
+        return result;
+    }
+    public static byte[] ConvertVector3IntToByte(object obj)
+    {
+        Vector3Int vector = (Vector3Int)obj;
+        byte[] result = new byte[12];
+        BitConverter.GetBytes(vector.x).CopyTo(result, 0);
+        BitConverter.GetBytes(vector.y).CopyTo(result, 4);
+        BitConverter.GetBytes(vector.z).CopyTo(result, 8);
+        return result;
+    }
+    public static byte[] ConvertBoolToByte(object obj)
+    {
+        bool _bool = (bool)obj;
+        byte[] result = new byte[8];
+        BitConverter.GetBytes(_bool).CopyTo(result, 0);
         return result;
     }
     #endregion
-    #region ConvertFromBit
+    #region ConvertFromByte
     public static object ConvertByteToVector2(byte[] data)
     {
         Vector2 result = new Vector2();
@@ -256,7 +309,21 @@ public class Math
         Vector3 result = new Vector3();
         result.x = BitConverter.ToInt32(data, 0);
         result.y = BitConverter.ToInt32(data, 4);
-        result.y = BitConverter.ToInt32(data, 8);
+        result.z = BitConverter.ToInt32(data, 8);
+        return result;
+    }
+    public static object ConvertByteToVector3Int(byte[] data)
+    {
+        Vector3Int result = new Vector3Int();
+        result.x = BitConverter.ToInt32(data, 0);
+        result.y = BitConverter.ToInt32(data, 4);
+        result.z = BitConverter.ToInt32(data, 8);
+        return result;
+    }
+    public static object ConvertByteToBool(byte[] data)
+    {
+        bool result = new bool();
+        result = BitConverter.ToBoolean(data, 0);
         return result;
     }
     #endregion
@@ -268,21 +335,45 @@ public class Math
     }
     public static float SetRandom(float min, float max)
     {
-        float result = Random.Range(min * 1000, max * 1000 + 1) / 1000;
+        float result = Random.Range(min * 10000, max * 10000 + 1) / 10000;
         return result;
     }
     #endregion
     #region Round
-    public static float RoundToTenths(int a)
+    public static float RoundToTenths(float a)
     {
         float result;
-        result = Mathf.RoundToInt(a * 10) / 10;
+        result = Mathf.Round(a * 10) / 10;
         return result;
     }
-    public static float RoundToHundredths(int a)
+    public static float RoundToHundredths(float a)
     {
         float result;
-        result = Mathf.RoundToInt(a * 100) / 100;
+        result = Mathf.Round(a * 100) / 100;
+        return result;
+    }
+    public static float RoundToThousandths(float a)
+    {
+        float result;
+        result = Mathf.Round(a * 1000) / 1000;
+        return result;
+    }
+    public static int RoundUpToTens(int a)
+    {
+        int result;
+        result = Mathf.RoundToInt(a / 10) * 10;
+        return result;
+    }
+    public static int RoundUpToHundreds(int a)
+    {
+        int result;
+        result = Mathf.RoundToInt(a / 100) * 100;
+        return result;
+    }
+    public static int RoundUpToThousands(int a)
+    {
+        int result;
+        result = Mathf.RoundToInt(a / 1000) * 1000;
         return result;
     }
     #endregion
