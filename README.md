@@ -1,4 +1,4 @@
-# Improved-math
+# Improved math
 Functions:
 GetMax(int/byte/string),
 GetMin(int/byte/string),
