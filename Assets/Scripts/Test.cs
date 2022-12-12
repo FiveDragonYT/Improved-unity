@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Math;
 
 public class Test : MonoBehaviour
 {
@@ -13,19 +14,18 @@ public class Test : MonoBehaviour
     {
         _test = this;
     }
-
     [ContextMenu("Init get min, max and average")]
     public void InitGetMinMaxAverage()
     {
         int[] _int = new int[intAmount];
         for (int i = 0; i < _int.Length; i++)
         {
-            _int[i] = Math.SetRandom(0, 1000);
+            _int[i] = IMath.SetRandom(0, 1000);
             Log("Int " +  (i + 1) + " seted to " + _int[i]);
         }
-        int maxInt = Math.GetMax(_int);
-        int minInt = Math.GetMin(_int);
-        int averageInt = Math.GetAverage(_int);
+        int maxInt = IMath.GetMax(_int);
+        int minInt = IMath.GetMin(_int);
+        int averageInt = IMath.GetAverage(_int);
         Log("Max int is " + maxInt.ToString());
         Log("Min int is " + minInt.ToString());
         Log("Average int is " + averageInt.ToString());
@@ -36,11 +36,11 @@ public class Test : MonoBehaviour
         float[] _float = new float[intAmount];
         for (int i = 0; i < _float.Length; i++)
         {
-            _float[i] = Math.SetRandom(0f, 20f);
+            _float[i] = IMath.SetRandom(0f, 20f);
             Log("Int " + (i + 1) + " seted to " + _float[i]);
         }
-        float maxFloat = Math.GetMax(_float);
-        float result = Math.RoundToTenths(maxFloat);
+        float maxFloat = IMath.GetMax(_float);
+        float result = IMath.RoundToTenths(maxFloat);
         Log("Max float is " + maxFloat.ToString());
         Log("Rounded float is " + result.ToString());
     }
@@ -50,15 +50,14 @@ public class Test : MonoBehaviour
         int[] _int = new int[intAmount];
         for (int i = 0; i < _int.Length; i++)
         {
-            _int[i] = Math.SetRandom(100, 7500);
+            _int[i] = IMath.SetRandom(100, 7500);
             Log("Int " + (i + 1) + " seted to " + _int[i]);
         }
-        int maxFloat = Math.GetMax(_int);
-        int result = Math.RoundUpToHundreds(maxFloat);
+        int maxFloat = IMath.GetMax(_int);
+        int result = IMath.RoundUpToHundreds(maxFloat);
         Log("Max int is " + maxFloat.ToString());
         Log("Rounded int is " + result.ToString());
     }
-
     public static void Log(string message)
     {
         Debug.Log(message);
