@@ -63,6 +63,20 @@ namespace Math
 
             return result;
         }
+        public static double GetMax(params double[] args)
+        {
+            double result = args[0];
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (result < args[i])
+                {
+                    result = args[i];
+                }
+            }
+
+            return result;
+        }
         #endregion
         #region GetMin
         public static int GetMin(params int[] args)
@@ -121,6 +135,20 @@ namespace Math
 
             return result;
         }
+        public static double GetMin(params double[] args)
+        {
+            double result = args[0];
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (result > args[i])
+                {
+                    result = args[i];
+                }
+            }
+
+            return result;
+        }
         #endregion
         #region GetAverage
         public static int GetAverage(params int[] args)
@@ -132,7 +160,7 @@ namespace Math
                 result += args[i];
 
             }
-            result = result / args.Length;
+            result /= args.Length;
             result = Mathf.RoundToInt(result);
             return result;
         }
@@ -145,7 +173,7 @@ namespace Math
                 result += args[i];
 
             }
-            result = result / args.Length;
+            result /= args.Length;
             return result;
         }
         public static byte GetAverage(params byte[] args)
@@ -157,8 +185,65 @@ namespace Math
                 result += args[i];
 
             }
-            result = (byte)(result / args.Length);
+            result /= (byte)args.Length;
             result = (byte)(Mathf.RoundToInt(result));
+            return result;
+        }
+        public static double GetAverage(params double[] args)
+        {
+            double result = 0;
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                result += args[i];
+
+            }
+            result /= args.Length;
+            result = (Mathf.RoundToInt((float)result));
+            return result;
+        }
+        #endregion
+        #region GetRandom
+        public static int GetRandom(params int[] args)
+        {
+            int result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
+            return result;
+        }
+        public static float GetRandom(params float[] args)
+        {
+            float result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
+            return result;
+        }
+        public static byte GetRandom(params byte[] args)
+        {
+            byte result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
+            return result;
+        }
+        public static double GetRandom(params double[] args)
+        {
+            double result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
+            return result;
+        }
+        public static bool GetRandom(params bool[] args)
+        {
+            bool result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
+            return result;
+        }
+        public static string GetRandom(params string[] args)
+        {
+            string result;
+            int i = Random.Range(0, args.Length);
+            result = args[i];
             return result;
         }
         #endregion
@@ -247,6 +332,32 @@ namespace Math
             }
             return result;
         }
+        public static byte Lerp3(byte a, byte b, byte c, float t)
+        {
+            byte result;
+            if (t < 0)
+            {
+                result = (byte)Mathf.LerpUnclamped(a, b, t + 1f);
+            }
+            else
+            {
+                result = (byte)Mathf.LerpUnclamped(b, c, t);
+            }
+            return result;
+        }
+        public static double Lerp3(double a, double b, double c, float t)
+        {
+            double result;
+            if (t < 0)
+            {
+                result = Mathf.LerpUnclamped((float)a, (float)b, t + 1f);
+            }
+            else
+            {
+                result = Mathf.LerpUnclamped((float)b, (float)c, t);
+            }
+            return result;
+        }
         #endregion
         #region ConvertToByte
         public static byte[] ConvertVector2ToByte(object obj)
@@ -324,7 +435,7 @@ namespace Math
         }
         public static object ConvertByteToBool(byte[] data)
         {
-            bool result = new bool();
+            bool result;
             result = BitConverter.ToBoolean(data, 0);
             return result;
         }
@@ -338,6 +449,11 @@ namespace Math
         public static float SetRandom(float min, float max)
         {
             float result = Random.Range(min * 10000, max * 10000 + 1) / 10000;
+            return result;
+        }
+        public static double SetRandom(double min, double max)
+        {
+            double result = Random.Range((float)min * 10000, (float)max * 10000 + 1) / 10000;
             return result;
         }
         #endregion
