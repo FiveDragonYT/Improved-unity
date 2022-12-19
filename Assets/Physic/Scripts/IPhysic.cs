@@ -40,7 +40,7 @@ namespace Physic
         }
         public static float GetDeltaLength(float length, float defultLength)
         {
-            float deltaLength = length / defultLength;
+            float deltaLength = length - defultLength;
             return deltaLength;
         }
         #endregion

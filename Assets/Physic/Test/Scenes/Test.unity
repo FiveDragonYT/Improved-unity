@@ -172,11 +172,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.0003
   far clip plane: 1000
   field of view: 70
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 79723513}
   - component: {fileID: 79723512}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: CopperCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,9 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2d519039bcceb40a9fd2f330da4efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  density: 8900
-  forceGravity: 0
-  volume: 0
+  resource: {fileID: 11400000, guid: e02db4dace264eb4cb8c09f120b5b270, type: 2}
   positionSpread: 0.39
   rotationSpread: 90
   scaleSpread: 3.31
@@ -431,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 185531364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 500, y: 0.5, z: 500}
+  m_LocalScale: {x: 25000, y: 0.5, z: 25000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -452,7 +450,7 @@ GameObject:
   - component: {fileID: 619652519}
   - component: {fileID: 619652518}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: IronCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,9 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2d519039bcceb40a9fd2f330da4efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  density: 7800
-  forceGravity: 0
-  volume: 0
+  resource: {fileID: 11400000, guid: e1ac2af0955e502428006c324c01fa1b, type: 2}
   positionSpread: 0.3
   rotationSpread: 90
   scaleSpread: 0.68
