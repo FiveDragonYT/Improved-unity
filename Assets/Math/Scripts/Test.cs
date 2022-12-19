@@ -4,16 +4,11 @@ using TMPro;
 using UnityEngine;
 using Math;
 
-public class Test : MonoBehaviour
+public class TestMath : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private int intAmount = 10;
-    private static Test _test;
 
-    private void Start()
-    {
-        _test = this;
-    }
     [ContextMenu("Init get min, max and average")]
     public void InitGetMinMaxAverage()
     {
@@ -29,6 +24,7 @@ public class Test : MonoBehaviour
         Log("Max int is " + maxInt.ToString());
         Log("Min int is " + minInt.ToString());
         Log("Average int is " + averageInt.ToString());
+        Log("");
     }
     [ContextMenu("Init round to tenths")]
     public void InitRoundToTenths()
@@ -43,6 +39,7 @@ public class Test : MonoBehaviour
         float result = IMath.RoundToTenths(maxFloat);
         Log("Max float is " + maxFloat.ToString());
         Log("Rounded float is " + result.ToString());
+        Log("");
     }
     [ContextMenu("Init round up to hundreds")]
     public void InitRoundUpToHundreds()
@@ -57,11 +54,16 @@ public class Test : MonoBehaviour
         int result = IMath.RoundUpToHundreds(maxFloat);
         Log("Max int is " + maxFloat.ToString());
         Log("Rounded int is " + result.ToString());
+        Log("");
     }
-    public static void Log(string message)
+    public void Log(string message)
     {
         Debug.Log(message);
-        _test.logText.text += "\n" + message;
+        logText.text += "\n" + message;
+    }
+    public void ClearLog()
+    {
+        logText.text = "Log:";
     }
 
 }

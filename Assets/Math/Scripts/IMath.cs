@@ -358,6 +358,19 @@ namespace Math
             }
             return result;
         }
+        public static Color Lerp3(Color a, Color b, Color c, float t)
+        {
+            Color result;
+            if (t < 0)
+            {
+                result = Color.LerpUnclamped(a, b, t + 1f);
+            }
+            else
+            {
+                result = Color.LerpUnclamped(b, c, t);
+            }
+            return result;
+        }
         #endregion
         #region ConvertToByte
         public static byte[] ConvertVector2ToByte(object obj)
@@ -454,6 +467,14 @@ namespace Math
         public static double SetRandom(double min, double max)
         {
             double result = Random.Range((float)min * 10000, (float)max * 10000 + 1) / 10000;
+            return result;
+        }
+        public static Color SetRandom(Color min, Color max)
+        {
+            Color result = new Color();
+            result.r = Random.Range(min.r * 10000, max.r * 10000 + 1) / 10000;
+            result.g = Random.Range(min.g * 10000, max.g * 10000 + 1) / 10000;
+            result.b = Random.Range(min.b * 10000, max.b * 10000 + 1) / 10000;
             return result;
         }
         #endregion
