@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Math
+namespace IUnity
 {
     public static class IMath
     {

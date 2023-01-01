@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEditor;
-using Math;
+using IUnity;
 
-public class WelcomeWindow : EditorWindow
+public class MathWelcomeWindow : EditorWindow
 {
     bool isUpd;
 
-    [MenuItem("Window/Math/Welcome")]
+    [MenuItem("Window/IUnity/Math/Welcome")]
     public static void ShowWelcomeWindow()
     {
-        GetWindow<WelcomeWindow>("Welcome!");
+        GetWindow<MathWelcomeWindow>("Welcome!");
     }
 
-    private void OnGUI()
+    void OnGUI()
     {
         GUILayout.Label("Welcome to improved math! Thanks for downloading!", EditorStyles.boldLabel);
 
@@ -25,15 +25,15 @@ public class WelcomeWindow : EditorWindow
                 {
                     int _int = IMath.SetRandom(1000, 2000);
                     int _i = IMath.SetRandom(-2, 2);
-                    Debug.LogError("Error CS " + (_int + (i * _i)) + " Don't worry, I just want to say thank you!");
+                    Debug.LogError($"Error CS  {(_int + (i * _i))}");
                 }
                 //Debug.Log("You trolled))");
             }
         }
         if (GUILayout.Button("Show function list"))
         {
-            FuncListWindow.ShowFuncListWindow();
-            this.Close();
+            MathFuncListWindow.ShowFuncListWindow();
+            Close();
         }
     }
 }

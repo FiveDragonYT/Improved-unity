@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(TestMath))]
-public class TestEditor : Editor
+public class MathTestEditor : Editor
 {
     public override void OnInspectorGUI()
     {

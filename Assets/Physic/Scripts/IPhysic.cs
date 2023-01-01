@@ -1,14 +1,10 @@
-using System;
-using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
-#region a
-#endregion
-namespace Physic
+
+namespace IUnity
 {
     public static class IPhysic
     {
-        public static float G = Mathf.Abs(Physics.gravity.y);
+        public static float G { get; private set; } = Mathf.Abs(Physics.gravity.y);
 
         #region Density
         public static float GetDensity(float mass, float volume)
