@@ -1,12 +1,10 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 using IUnity;
-using UnityEngine.UI;
 
 public class TestSaves : MonoBehaviour
 {
     [SerializeField] TMP_InputField nameInput;
-    [SerializeField] Toggle useAutoSavesToggle;
     [SerializeField] string key = "NameSaver";
 
     void Start()
@@ -16,14 +14,7 @@ public class TestSaves : MonoBehaviour
 
     public void OnNameChanged()
     {
-        if (useAutoSavesToggle.isOn) Save();
-    }
-
-    public void SetAutoSaves(bool value)
-    {
-        useAutoSavesToggle.isOn = value;
-
-        if (useAutoSavesToggle.isOn) Save();
+        Save();
     }
 
     public void Save()
@@ -35,8 +26,7 @@ public class TestSaves : MonoBehaviour
     {
         var data = SaveManager.Load<TestSavesProfile>(key);
 
-        nameInput.text = data.Name;
-        useAutoSavesToggle.isOn = data.UseAutoSaves;
+        nameInput.SetTextWithoutNotify(data.Name);
     }
 
     TestSavesProfile GetSaveSnapshot()
@@ -44,7 +34,6 @@ public class TestSaves : MonoBehaviour
         var data = new TestSavesProfile()
         {
             Name = nameInput.text,
-            UseAutoSaves = useAutoSavesToggle.isOn
         };
 
         return data;

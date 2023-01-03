@@ -3,6 +3,10 @@ using System;
 [Serializable]
 public class TestSavesProfile
 {
-    public string Name { get; set; }
-    public bool UseAutoSaves { get; set; }
+    public string Name;
+
+    public TestSavesProfile()
+    {
+        Name = "Defult name";
+    }
 }
